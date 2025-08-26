@@ -20,7 +20,7 @@ confusion matrix, and t-SNE.
 ## Environment
 numpy, pandas, scikit-learn, torch, matplotlib, seaborn, plotly.
 
-## Resume Blurb
+## Blurb
 Built an indoor localization system from Bluetooth RSSI using Conv1D→LSTM with
 AE warm-start and k-fold ensemble; added baselines and interpretability via
 CDF-of-error. Clean, reproducible repo with notebooks and plots.
