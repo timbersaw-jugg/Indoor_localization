@@ -25,4 +25,3 @@ Built an indoor localization system from Bluetooth RSSI using Conv1D→LSTM with
 AE warm-start and k-fold ensemble; added baselines and interpretability via
 CDF-of-error. Clean, reproducible repo with notebooks and plots.
 
-License: MIT
