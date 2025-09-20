@@ -7,3 +7,9 @@ data/*
 !data/.gitkeep
 models/*
 !models/.gitkeep
+mlruns/
+__pycache__/
+*.pyc
+mlruns/
+__pycache__/
+*.pyc
