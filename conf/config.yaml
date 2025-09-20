@@ -1,0 +1,33 @@
+# conf/config.yaml
+
+# --- File and Directory Paths ---
+paths:
+  labeled_data: "data/iBeacon_RSSI_Labeled.csv"
+  unlabeled_data: "data/iBeacon_RSSI_Unlabeled.csv"
+  model_dir: "models"
+  scaler_path: "models/scaler.joblib"
+  plots_dir: "plots"
+
+# --- Data Processing Parameters ---
+data:
+  sequence_length: 20
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15 # Explicitly defined for clarity
+  # The code should verify that these three sum to 1.0
+
+# --- Model Architecture Parameters ---
+model:
+  input_dim: 13       # Number of RSSI features per timestep
+  latent_dim: 128     # Latent dimension for the autoencoder and LSTM
+
+# --- Training Parameters ---
+training:
+  learning_rate: 0.001
+  batch_size: 16
+  epochs: 75
+  patience: 5         # For early stopping
+  k_folds: 5          # Number of splits for cross-validation
+
+# --- Reproducibility ---
+seed: 42

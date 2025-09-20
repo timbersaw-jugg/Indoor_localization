@@ -1,0 +1,10 @@
+artifact_location: file:///Users/anil/Projects/Indoor_localization_project/mlruns/209715483549415243/models/m-12e00c7cef1a4dfc8292111506c297bd/artifacts
+creation_timestamp: 1758363434343
+experiment_id: '209715483549415243'
+last_updated_timestamp: 1758363435587
+model_id: m-12e00c7cef1a4dfc8292111506c297bd
+model_type: null
+name: Support Vector Machine
+source_run_id: a1dc0727afc94062aba8eb39b7ca3ca2
+status: 2
+status_message: null

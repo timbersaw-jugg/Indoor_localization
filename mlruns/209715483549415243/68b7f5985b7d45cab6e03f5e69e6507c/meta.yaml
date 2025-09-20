@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/anil/Projects/Indoor_localization_project/mlruns/209715483549415243/68b7f5985b7d45cab6e03f5e69e6507c/artifacts
+end_time: 1758359611654
+entry_point_name: ''
+experiment_id: '209715483549415243'
+lifecycle_stage: active
+run_id: 68b7f5985b7d45cab6e03f5e69e6507c
+run_name: Baseline_K-Nearest Neighbors
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758359609769
+status: 3
+tags: []
+user_id: anil

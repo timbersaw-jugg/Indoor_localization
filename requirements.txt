@@ -1,0 +1,23 @@
+# requirements.txt
+
+# Core Deep Learning
+torch
+torchvision
+torchaudio
+
+# ML and Data Handling
+scikit-learn
+pandas
+numpy
+
+# MLOps and Deployment
+mlflow
+pyyaml
+joblib
+bentoml
+
+# Plotting
+matplotlib
+seaborn
+plotly
+ipython

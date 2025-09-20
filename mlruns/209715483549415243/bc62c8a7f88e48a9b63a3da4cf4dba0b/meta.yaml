@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/anil/Projects/Indoor_localization_project/mlruns/209715483549415243/bc62c8a7f88e48a9b63a3da4cf4dba0b/artifacts
+end_time: 1758360190145
+entry_point_name: ''
+experiment_id: '209715483549415243'
+lifecycle_stage: active
+run_id: bc62c8a7f88e48a9b63a3da4cf4dba0b
+run_name: Baseline_Random Forest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758360188419
+status: 3
+tags: []
+user_id: anil
