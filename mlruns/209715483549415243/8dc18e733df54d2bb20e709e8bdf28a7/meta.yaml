@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/anil/Projects/Indoor_localization_project/mlruns/209715483549415243/8dc18e733df54d2bb20e709e8bdf28a7/artifacts
+end_time: 1758364262260
+entry_point_name: ''
+experiment_id: '209715483549415243'
+lifecycle_stage: active
+run_id: 8dc18e733df54d2bb20e709e8bdf28a7
+run_name: Baseline_Support Vector Machine
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758364260843
+status: 3
+tags: []
+user_id: anil

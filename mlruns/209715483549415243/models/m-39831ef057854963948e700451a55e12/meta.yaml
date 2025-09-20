@@ -1,0 +1,10 @@
+artifact_location: file:///Users/anil/Projects/Indoor_localization_project/mlruns/209715483549415243/models/m-39831ef057854963948e700451a55e12/artifacts
+creation_timestamp: 1758359609897
+experiment_id: '209715483549415243'
+last_updated_timestamp: 1758359611652
+model_id: m-39831ef057854963948e700451a55e12
+model_type: null
+name: K-Nearest Neighbors
+source_run_id: 68b7f5985b7d45cab6e03f5e69e6507c
+status: 2
+status_message: null

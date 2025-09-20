@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/anil/Projects/Indoor_localization_project/mlruns/209715483549415243/5032eb0df4c84f5e9a7095cee1510d40/artifacts
+end_time: 1758362045901
+entry_point_name: ''
+experiment_id: '209715483549415243'
+lifecycle_stage: active
+run_id: 5032eb0df4c84f5e9a7095cee1510d40
+run_name: Fold_2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758361956295
+status: 3
+tags: []
+user_id: anil
