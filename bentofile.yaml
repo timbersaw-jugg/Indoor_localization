@@ -1,0 +1,8 @@
+service: "service:IndoorLocalizationClassifier"
+labels:
+  owner: bentoml-team
+  project: indoor_localization
+include:
+  - "service.py"
+python:
+  requirements_txt: "./requirements.txt"

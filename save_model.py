@@ -1,52 +1,58 @@
 # save_model.py
-import bentoml
+import os
 import torch
 import joblib
-import os
-from src.models import IndoorLocalizer
+import bentoml
+from src.models import IndoorLocalizer, RSSIAutoencoder
 from src.utils import load_config
 
-# This script packages your k-fold models and scalers into one BentoML model.
+BENTO_MODEL_NAME = "indoor_localization_ensemble"
 
 if __name__ == "__main__":
     config = load_config()
     model_dir = config['paths']['model_dir']
-    
-    # Dynamically find how many folds were successfully trained
-    num_folds = 0
-    for item in os.listdir(model_dir):
-        if item.startswith("model_fold_") and item.endswith(".pth"):
-            num_folds += 1
 
-    if num_folds == 0:
-        raise FileNotFoundError("No trained models found in the 'models/' directory. Please run the training pipeline first.")
+    # --- Detect folds dynamically: only include folds with both model + scaler ---
+    available_folds = []
+    for i in range(1, 20):  # search up to 20 possible folds
+        model_path = os.path.join(model_dir, f'model_fold_{i}.pth')
+        scaler_path = os.path.join(model_dir, f'scaler_fold_{i}.joblib')
+        if os.path.exists(model_path) and os.path.exists(scaler_path):
+            available_folds.append(i)
 
-    # This should be the total number of unique location classes in your dataset
-    NUM_CLASSES = 105 
+    if len(available_folds) == 0:
+        raise FileNotFoundError("No complete model+scaler pairs found. Please run the training pipeline first.")
+
+    NUM_CLASSES = 105  # update if dataset changes
 
     models = {}
     scalers = {}
 
-    print(f"Packaging {num_folds} trained models...")
-    for i in range(1, num_folds + 1):
-        # Load the scaler for this fold
+    print(f"Packaging {len(available_folds)} trained models...")
+
+    for i in available_folds:
+        # Load scaler
         scaler_path = os.path.join(model_dir, f'scaler_fold_{i}.joblib')
         scalers[f'scaler_fold_{i}'] = joblib.load(scaler_path)
 
-        # Recreate model architecture and load its trained weights
-        dummy_encoder = torch.nn.Sequential() # Placeholder for initialization
-        model = IndoorLocalizer(config, NUM_CLASSES, pretrained_encoder=dummy_encoder)
+        # Reconstruct encoder correctly
+        temp_autoencoder = RSSIAutoencoder(config)
+        correct_encoder = temp_autoencoder.encoder
+        model = IndoorLocalizer(config, NUM_CLASSES, pretrained_encoder=correct_encoder)
+
+        # Load trained weights
         model_path = os.path.join(model_dir, f'model_fold_{i}.pth')
-        model.load_state_dict(torch.load(model_path, map_location="cpu"),strict=False)
+        model.load_state_dict(torch.load(model_path, map_location="cpu"))
         model.eval()
         models[f'model_fold_{i}'] = model
-    
-    # Combine all models and scalers into a single dictionary to be saved
-    saved_model_and_scalers = {"models": models, "scalers": scalers}
 
-    # Save the combined dictionary as a single BentoML model
-    bento_model = bentoml.pytorch.save_model(
-        "indoor_localization_ensemble", # model name
-        saved_model_and_scalers,        # the object to save
+    # --- Save as PicklableModel with custom_objects ---
+    saved_objects = {"models": models, "scalers": scalers}
+
+    bento_model = bentoml.picklable_model.save_model(
+        name="indoor_localization_ensemble",
+        model=saved_objects,
+        custom_objects=saved_objects,
+        
     )
     print(f"Bento model saved with tag: {bento_model.tag}")

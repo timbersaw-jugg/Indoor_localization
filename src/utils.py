@@ -1,4 +1,4 @@
-# # src/utils.py
+# src/utils.py
 
 import yaml
 import os
@@ -104,11 +104,8 @@ def animate_paths(true_coords, pred_coords, timestamps, image_path, xrange, yran
         true_x, true_y = zip(*true_coords[:frame+1]); pred_x, pred_y = zip(*pred_coords[:frame+1])
         true_line.set_data(true_x, true_y); pred_line.set_data(pred_x, pred_y)
         
-        # --- THIS IS THE FIX ---
-        # Wrap the single coordinate points in a list to make them a sequence
         true_dot.set_data([true_x[-1]], [true_y[-1]])
         pred_dot.set_data([pred_x[-1]], [pred_y[-1]])
-        # --- END OF FIX ---
 
         time_text.set_text(timestamps[frame].strftime('%Y-%m-%d %H:%M:%S'))
         return true_line, pred_line, true_dot, pred_dot, time_text

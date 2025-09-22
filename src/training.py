@@ -12,6 +12,7 @@ import numpy as np
 import os
 import mlflow
 import joblib
+import random
 
 from src.models import RSSIAutoencoder, IndoorLocalizer
 from src.utils import plot_curves, plot_gradient_descent_progress
@@ -19,6 +20,13 @@ from src.utils import plot_curves, plot_gradient_descent_progress
 def train_one_fold(config, X_train, y_train, X_val, y_val, fold):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
+    seed = config['seed']
+    random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+
     nsamples, nsteps, nfeatures = X_train.shape
     X_train_reshaped = X_train.reshape(-1, nfeatures)
     scaler = StandardScaler().fit(X_train_reshaped)
@@ -49,7 +57,7 @@ def train_one_fold(config, X_train, y_train, X_val, y_val, fold):
         for (inputs,) in ae_loader:
             inputs = inputs.to(device)
             noisy_inputs = inputs + 0.05 * torch.randn_like(inputs)
-            reconstructions, _ = autoencoder(noisy_inputs)
+            reconstructions = autoencoder(noisy_inputs)
             loss = ae_criterion(reconstructions, inputs)
             ae_optimizer.zero_grad(); loss.backward(); ae_optimizer.step()
     

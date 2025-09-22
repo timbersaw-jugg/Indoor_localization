@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "kubernetes://schema/apps/v1@deployment+v1@service": "file:///Users/anil/Projects/Indoor_localization_project/deployment.yaml"
+    }
+}
