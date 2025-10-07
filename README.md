@@ -150,5 +150,5 @@ This project is licensed under the [MIT License](./LICENSE) © 2025 Vansarla Ani
 
 ## Contact
 
-Your Name - anil.kumar87654321@gmail.com
+Your Name - Anil Vansarla
 Project Link: https://github.com/timbersaw-jugg/Indoor_localization
