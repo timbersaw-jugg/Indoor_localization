@@ -25,8 +25,8 @@ This project implements an indoor localization system that uses sensor data to p
 - **Output**: Predicted location classes
 
 ## Reproducibility Note
-The validated experiment achieving 87.7 % accuracy is contained in  
-[`Indoor_Localization.ipynb`](./Indoor_Localization.ipynb).  
+The validated experiment achieving 87.7 % accuracy is contained in notebook section
+[`Indoor Localization.ipynb`](./Indoor_Localization.ipynb).  
 The Python scripts (`train_models.py`, `service.py`, etc.) are modular versions currently under refinement and may yield slightly lower accuracy (~70 %) due to refactoring.
 
 ## Project Structure
